@@ -1,7 +1,25 @@
-import React from "react";
-import styled from "styled-components";
-import { connect } from "react-redux";
-const Productos = ({ productos, agregarProducto }) => {
+import React from 'react';
+import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { actionsEnum } from '../store/constants';
+import { useSelector, useDispatch } from 'react-redux';
+
+const Productos = () => {
+  const { productos } = useSelector((store) => {
+    console.log('store', store);
+    return store;
+  });
+  const dispatcher = useDispatch();
+
+  const agregarProducto = (id, nombre) => {
+    dispatcher({
+      //Envia esta acción
+      type: actionsEnum.addProduct,
+      id,
+      nombre,
+    });
+  };
+
   return (
     <>
       <h3>Productos</h3>
@@ -13,7 +31,7 @@ const Productos = ({ productos, agregarProducto }) => {
               <Boton
                 onClick={() => agregarProducto(producto.id, producto.nombre)}
               >
-                {" "}
+                {' '}
                 Agregar al carrito
               </Boton>
             </Producto>
@@ -60,24 +78,5 @@ const Boton = styled.button`
     background: #1c6ab9;
   }
 `;
-const mapStateToProps = estado => {
-  return {
-    productos: estado.productos
-  };
-};
-const mapDispatchToProps = dispatch => {
-  return {
-    agregarProducto: (id, nombre) => {
-      dispatch({ //Envia esta acción
-        type: "AGREGAR_AL_CARRITO",
-        id,
-        nombre      
-      
-       }); 
-    }
-  };
-};
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Productos);
+
+export default Productos;
