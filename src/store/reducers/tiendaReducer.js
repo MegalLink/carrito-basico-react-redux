@@ -11,7 +11,7 @@ const estadoInicial = {
   carrito: [],
 };
 
-const reducer = createReducer(estadoInicial, {
+const tiendaReducer = createReducer(estadoInicial, {
   [addProduct]: (estado, accion) => {
     const { id, nombre } = accion;
     if (estado.carrito.length == 0) {
@@ -51,4 +51,4 @@ const reducer = createReducer(estadoInicial, {
   },
 });
 
-export default reducer;
+export default tiendaReducer;

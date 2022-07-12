@@ -1,8 +1,14 @@
-import React from "react";
-import styled from "styled-components";
-import { connect } from "react-redux";
-const Carrito = ({ carrito }) => {
-  console.log(carrito);
+import React from 'react';
+import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+const Carrito = () => {
+  const { carrito } = useSelector((store) => {
+    return store.store;
+  });
+
+  const { value } = useSelector((store) => {
+    return store.counter;
+  });
   return (
     <>
       <h3>Carrito de compras</h3>
@@ -18,6 +24,7 @@ const Carrito = ({ carrito }) => {
       ) : (
         <p>Aún no has agregado productos al carrito</p>
       )}
+      <h2> Cantidad: {value} </h2>
     </>
   );
 };
@@ -31,9 +38,5 @@ font-weight_bold;
 font-size:16px;
 color:#000;
 `;
-const globalProps = estado => {
-  return {
-    carrito: estado.carrito
-  };
-};
-export default connect(globalProps)(Carrito);
+
+export default Carrito;

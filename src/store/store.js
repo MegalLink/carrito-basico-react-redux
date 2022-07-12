@@ -1,12 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import reducer from './reducers/tiendaReducer';
+import tiendaReducer from './reducers/tiendaReducer';
+import counterReducer from './reducers/counterReducer';
 const store = configureStore({
-  reducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
   devTools: true,
-  reducer: reducer,
+  reducer: { store: tiendaReducer, counter: counterReducer },
 });
 
-const appDispatch = store.dispatch;
-const rootState = store.getState;
-export { store, appDispatch, rootState };
+export { store };

@@ -1,16 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
 import { actionsEnum } from '../store/constants';
 import { useSelector, useDispatch } from 'react-redux';
-
+import { increment } from '../store/reducers/counterReducer';
 const Productos = () => {
   const { productos } = useSelector((store) => {
-    console.log('store', store);
-    return store;
+    return store.store;
   });
   const dispatcher = useDispatch();
-
   const agregarProducto = (id, nombre) => {
     dispatcher({
       //Envia esta acción
@@ -18,6 +15,8 @@ const Productos = () => {
       id,
       nombre,
     });
+
+    dispatcher(increment());
   };
 
   return (
