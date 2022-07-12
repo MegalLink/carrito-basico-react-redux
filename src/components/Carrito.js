@@ -2,6 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 const Carrito = () => {
+  const { isLoading, name } = useSelector((store) => {
+    return store.pokemon;
+  });
+
   const { carrito } = useSelector((store) => {
     return store.store;
   });
@@ -9,6 +13,7 @@ const Carrito = () => {
   const { value } = useSelector((store) => {
     return store.counter;
   });
+
   return (
     <>
       <h3>Carrito de compras</h3>
@@ -25,6 +30,8 @@ const Carrito = () => {
         <p>Aún no has agregado productos al carrito</p>
       )}
       <h2> Cantidad: {value} </h2>
+      {isLoading ? <p> Loading </p> : <p>Loaded</p>}
+      <h2> name: {name}</h2>
     </>
   );
 };
