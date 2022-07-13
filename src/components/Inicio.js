@@ -17,7 +17,7 @@ export default function Inicio() {
           dispatcher(getPokemon());
         }}
       >
-        Button
+        Call thunk pokemon
       </button>
     </div>
   );

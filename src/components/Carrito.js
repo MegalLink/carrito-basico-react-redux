@@ -30,8 +30,14 @@ const Carrito = () => {
         <p>Aún no has agregado productos al carrito</p>
       )}
       <h2> Cantidad: {value} </h2>
-      {isLoading ? <p> Loading </p> : <p>Loaded</p>}
-      <h2> name: {name}</h2>
+      {isLoading == '' ? (
+        <p> Not Called thunk </p>
+      ) : (
+        <>
+          <p>Called thunk</p>
+          <h2> name: {name}</h2>
+        </>
+      )}
     </>
   );
 };

@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { actionsPokemonEnum } from '../constants';
-const initialState = { isLoading: false, name: '' };
+const initialState = { isLoading: '', name: '' };
 
 export const getPokemon = createAsyncThunk(
   actionsPokemonEnum.getPokemon,
@@ -22,14 +22,15 @@ const pokemonSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getPokemon.pending, (state, action) => {
-        state.isLoading = true;
+        state.isLoading = 'pending';
         state.name = 'PENDING!!!!!!!!!!!!!!!!!!!';
         console.log('loading', state);
       })
       .addCase(
         getPokemon.fulfilled,
         (state, action) => {
-          state.isLoading = false;
+        
+          state.isLoading = 'loaded';
           state.name = action.payload.name;
           console.log('loaded', state);
         },
