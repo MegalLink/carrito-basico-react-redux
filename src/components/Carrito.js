@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 const Carrito = () => {
-  const { isLoading, name } = useSelector((store) => {
+  const { pokemon } = useSelector((store) => {
     return store.pokemon;
   });
-
+  console.log(pokemon);
   const { carrito } = useSelector((store) => {
     return store.store;
   });
@@ -30,12 +30,13 @@ const Carrito = () => {
         <p>Aún no has agregado productos al carrito</p>
       )}
       <h2> Cantidad: {value} </h2>
-      {isLoading == '' ? (
+      {JSON.stringify(pokemon) === JSON.stringify({}) ? (
         <p> Not Called thunk </p>
       ) : (
         <>
           <p>Called thunk</p>
-          <h2> name: {name}</h2>
+          <h2> name: {pokemon.name}</h2>
+          <h2> id: {pokemon.id}</h2>
         </>
       )}
     </>
